@@ -1,12 +1,14 @@
 ## usersテーブル
-|Column            |Type   |Options   |
-|------------------|-------|----------|
-|name              |string |null:false|
-|name_kana         |string |null:false|
-|date_of_birth_id  |integer|
-|nickname          |string |null:false|
-|encrypted_password|string |null:false|
-|email             |string |null:false|
+|Column            |Type   |Options                |
+|------------------|-------|-----------------------|
+|last_name         |string |null:false             |
+|first_name        |string |null:false             |
+|last_name_kana    |string |null:false             |
+|first_name_kana   |string |null:false             |
+|date_of_birth     |date   |null:false             |
+|nickname          |string |null:false             |  
+|encrypted_password|string |null:false             |
+|email             |string |null:false, unique:true|
 
 ### Association
 has_many: items
@@ -26,25 +28,25 @@ has_many: purchase_records
 |days_to_ship_id   |integer   |null:false                  |
 
 ### Association
-belong_to: users
-has_one: purchase_records
+belong_to: user
+has_one: purchase_record
 
 
 ## purchase_recordsテーブル
-|Column        |Type      |Options                     |
-|--------------|----------|----------------------------|
-|item_id       |references|null:false, foreign_key:true|
-|user_id       |references|null:false, foreign_key:true|
+|Column|Type      |Options                     |
+|------|----------|----------------------------|
+|item  |references|null:false, foreign_key:true|
+|user  |references|null:false, foreign_key:true|
 
 ### Association
-belong_to: users
-has_one: shipping_addresses
-belong_to: items
+belong_to: user
+has_one: shipping_address
+belong_to: item
 
 ## shipping_addressesテーブル
 |Column           |Type      |Options                     |
 |-----------------|----------|----------------------------|
-|user_id          |references|null:false, foreign_key:true|
+|purchase_record  |references|null:false, foreign_key:true|
 |shipping         |string    |null:false                  |
 |prefectures_id   |integer   |null:false                  |
 |municipalities   |string    |null:false                  |
@@ -53,4 +55,4 @@ belong_to: items
 |telephone_number |string    |null:false                  |
 
 ### Association
-belong_to: purchase_records
+belong_to: purchase_record
