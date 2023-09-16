@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :days_to_ship
   has_one_attached :image
   belongs_to :user
+  has_one :purchase_record
 
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, only_integer: true }
 
