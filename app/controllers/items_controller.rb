@@ -25,8 +25,10 @@ class ItemsController < ApplicationController
 
   def edit
     
-    unless current_user.id == @item.user_id  
-        redirect_to root_path
+    if current_user.id == @item.user_id && @item.purchase_record.nil?
+
+    else 
+      redirect_to root_path
     end
       
   end
@@ -55,4 +57,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+
+    
 end

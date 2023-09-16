@@ -47,9 +47,8 @@ belong_to: item
 |Column           |Type      |Options                     |
 |-----------------|----------|----------------------------|
 |purchase_record  |references|null:false, foreign_key:true|
-|shipping         |string    |null:false                  |
 |prefecture_id    |integer   |null:false                  |
-|municipalities   |string    |null:false                  |
+|city             |string    |null:false                  |
 |street_address   |string    |null:false                  |
 |building_name    |string    |                            |
 |telephone_number |string    |null:false                  |
